@@ -9,12 +9,11 @@ import { DataSourceConfig } from './config/data.source';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: `.${process.env.NODE_ENV}.env`,
-      isGlobal: true,
-    }),
+    ConfigModule.forRoot(),
 
-    TypeOrmModule.forRoot({ ...DataSourceConfig }),
+    TypeOrmModule.forRootAsync({
+      useFactory: () => DataSourceConfig,
+    }),
 
     AuthModule,
     UsersModule,
