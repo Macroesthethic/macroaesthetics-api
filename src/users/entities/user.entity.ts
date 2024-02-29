@@ -1,4 +1,7 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { BeforeInsert, Column, Entity, JoinTable, ManyToMany, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
+import { UserDetails } from './user-detail.entity';
+import { Profession } from './professions.entity';
+import { Providers } from './providers.entity';
 
 @Entity('users')
 export class Users {
@@ -40,4 +43,15 @@ export class Users {
   emailToLowerCase() {
     this.email = this.email.toLowerCase();
   }
+
+  @OneToOne(() => UserDetails, (userDetails) => userDetails.user)
+  details: UserDetails;
+
+  @ManyToMany(() => Profession)
+  @JoinTable()
+  professions: Profession[];
+  
+  @ManyToMany(() => Profession)
+  @JoinTable()
+  providers: Providers[];
 }
