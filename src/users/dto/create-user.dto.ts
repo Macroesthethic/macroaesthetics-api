@@ -1,17 +1,44 @@
+import {
+  IsEmail,
+  IsNumber,
+  IsString,
+  Matches,
+  MaxLength,
+  MinLength,
+} from "class-validator";
 import { UserDetails } from "../entities/user-detail.entity";
 
 export class CreateUserDto {
-
-    name: string;
-    lastname: string;
-    phone: string;
-    email: string;
-    country: string;
-    password: string;
-    is_active: boolean;
-    details: UserDetails;
-    professions?: string[];
-    providers?: string[];
-    created_at: Date;
-
+  
+    @IsString()
+  name: string;
+  
+  @IsString()
+  lastname: string;
+  
+  @IsNumber()
+  phone: string;
+ 
+  @IsEmail()
+  email: string;
+  
+  @IsString()
+  country: string;
+ 
+  @IsString()
+  @MinLength(6)
+  @MaxLength(50)
+  @Matches(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {
+    message:
+      "La contraseña debe contener al menos una letra mayúscula, una letra minúscula, un número y un carácter especial.",
+  })
+  password: string;
+  
+  details: UserDetails;
+  
+  professions?: string[];
+  
+  providers?: string[];
+  
+  created_at: Date;
 }
