@@ -37,7 +37,8 @@ export class AuthService {
       throw new UnauthorizedException("Invalid credentials");
 
     return {
-      access_token: this.generateToken({ email: user.email, id: user.id }),
+      message: "User logged in successfully",  
+      token: this.generateToken({ email: user.email, id: user.id }),
     };
   }
 
