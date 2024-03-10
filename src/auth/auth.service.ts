@@ -1,26 +1,49 @@
-import { Injectable } from '@nestjs/common';
-import { CreateAuthDto } from './dto/create-auth.dto';
-import { UpdateAuthDto } from './dto/update-auth.dto';
+import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
+import { LoginUserDto } from "./dto/login-auth.dto";
+import { UsersService } from "@/users/users.service";
+import { Repository } from "typeorm";
+import { User } from "@/users/entities/user.entity";
+import { InjectRepository } from "@nestjs/typeorm";
+import * as bcrypt from "bcrypt";
+import { JwtPayload } from "./interfaces/jwt-payload.interface";
 
 @Injectable()
 export class AuthService {
-  create(createAuthDto: CreateAuthDto) {
-    return 'This action adds a new auth';
+  constructor(
+    private readonly jwtService: JwtService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>
+  ) {}
+
+  async validateUser(email: string, password: string): Promise<any> {}
+
+  async login(loginUserDto: LoginUserDto) {
+    const { password, email } = loginUserDto;
+
+    const user = await this.userRepository.findOne({
+      where: { email: email },
+      select: {
+        id: true,
+        email: true,
+        password: true,
+        role: true,
+      },
+    });
+
+    if (!user) throw new UnauthorizedException("Invalid credentials");
+
+    if (!bcrypt.compareSync(password, user.password))
+      throw new UnauthorizedException("Invalid credentials");
+
+    return {
+      message: "User logged in successfully",  
+      token: this.generateToken({ email: user.email, id: user.id }),
+    };
   }
 
-  findAll() {
-    return `This action returns all auth`;
-  }
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
-  }
-
-  update(id: number, updateAuthDto: UpdateAuthDto) {
-    return `This action updates a #${id} auth`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} auth`;
+  private generateToken(payload: JwtPayload) {
+    const token = this.jwtService.sign(payload);
+    return token;
   }
 }

@@ -1,7 +1,18 @@
-import { BeforeInsert, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  BeforeInsert,
+  Column,
+  Entity,
+  JoinTable,
+  ManyToMany,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
+import { UserDetails } from './user-detail.entity';
+import { Profession } from './professions.entity';
+import { Providers } from './providers.entity';
 
 @Entity('users')
-export class Users {
+export class User {
   @PrimaryGeneratedColumn('uuid')
   id: string;
 
@@ -11,11 +22,11 @@ export class Users {
   @Column('text')
   lastname: string;
 
-  @Column('text', { unique: true })
-  email: string;
-
   @Column('text')
   phone: string;
+
+  @Column('text', { unique: true })
+  email: string;
 
   @Column('text')
   country: string;
@@ -36,8 +47,25 @@ export class Users {
   })
   is_active: boolean;
 
+  @Column('text', {
+    array: true,
+    default: ['user'],
+  })
+  role: string[];
+
   @BeforeInsert()
   emailToLowerCase() {
     this.email = this.email.toLowerCase();
   }
+
+  // @OneToOne(() => UserDetails, (userDetails) => userDetails.user)
+  // details: UserDetails;
+
+  // @ManyToMany(() => Profession)
+  // @JoinTable()
+  // professions: Profession[];
+
+  // @ManyToMany(() => Profession)
+  // @JoinTable()
+  // providers: Providers[];
 }
