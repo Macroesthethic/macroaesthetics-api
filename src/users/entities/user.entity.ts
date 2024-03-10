@@ -47,6 +47,12 @@ export class User {
   })
   is_active: boolean;
 
+  @Column('text', {
+    array: true,
+    default: ['user'],
+  })
+  role: string[];
+
   @BeforeInsert()
   emailToLowerCase() {
     this.email = this.email.toLowerCase();

@@ -1,5 +1,5 @@
 import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Users } from './user.entity';
+import { User} from './user.entity';
 
 export enum DocumentOption {
   AttachFile = 'Adjuntar archivo',
@@ -31,9 +31,9 @@ export class UserDetails {
   })
   documentOption: DocumentOption;
 
-  @OneToOne(()=> Users)
+  @OneToOne(()=> User)
   @JoinColumn()
-    user: Users;
+    user: User;
 
   
 }
