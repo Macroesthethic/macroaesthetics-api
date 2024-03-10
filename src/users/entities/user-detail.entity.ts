@@ -13,23 +13,23 @@ export class UserDetails {
   id: string;
 
   @Column('boolean')
-  isProfessional: boolean;
+  isProfessional?: boolean;
 
   @Column('text', { nullable: true })
-  profession: string;
+  profession?: string;
 
   @Column('boolean')
-  isProvider: boolean;
+  isProvider?: boolean;
 
   @Column('text', { nullable: true })
-  brandName: string;
+  brandName?: string;
 
   @Column({
     type: 'enum',
     enum: DocumentOption,
     default: DocumentOption.Skip,
   })
-  documentOption: DocumentOption;
+  documentOption?: DocumentOption;
 
   @OneToOne(()=> User)
   @JoinColumn()
