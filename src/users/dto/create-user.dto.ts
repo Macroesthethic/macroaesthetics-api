@@ -22,9 +22,6 @@ export class CreateUserDto {
   email: string;
 
   @IsString()
-  country: string;
-
-  @IsString()
   @MinLength(6)
   @MaxLength(50)
   @Matches(/(?:(?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/, {

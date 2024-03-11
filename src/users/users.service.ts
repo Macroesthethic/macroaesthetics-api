@@ -36,8 +36,7 @@ export class UsersService {
   async create(createUserDto: CreateUserDto) {
     const { password } = createUserDto;
 
-    
-    const hashedPassword =bcrypt.hashSync(password, 10);
+    const hashedPassword = bcrypt.hashSync(password, 10);
 
     const user = this.usersRepository.create({
       ...createUserDto,
@@ -54,9 +53,8 @@ export class UsersService {
   }
 
   private handleDBError(error: any) {
-    if (error.code === "23505") {
-      throw new ConflictException("User already exists");
-    }
+    if (error.code === "23505") throw new ConflictException("User already exists");
+    
     throw new Error("Something went wrong");
   }
 
