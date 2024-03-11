@@ -28,9 +28,6 @@ export class User {
   @Column('text', { unique: true })
   email: string;
 
-  @Column('text')
-  country: string;
-
   @Column('text', {
     select: false,
   })
@@ -47,11 +44,8 @@ export class User {
   })
   is_active: boolean;
 
-  @Column('text', {
-    array: true,
-    default: ['user'],
-  })
-  role: string[];
+  @Column('text')
+  role: string;
 
   @BeforeInsert()
   emailToLowerCase() {

@@ -1,4 +1,4 @@
-import { Injectable, UnauthorizedException } from "@nestjs/common";
+import { HttpStatus, Injectable, UnauthorizedException } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
 import { LoginUserDto } from "./dto/login-auth.dto";
 import { UsersService } from "@/users/users.service";
@@ -37,6 +37,7 @@ export class AuthService {
       throw new UnauthorizedException("Invalid credentials");
 
     return {
+      status: HttpStatus.OK,
       message: "User logged in successfully",  
       token: this.generateToken({ email: user.email, id: user.id }),
     };
