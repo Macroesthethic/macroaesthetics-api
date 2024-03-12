@@ -44,16 +44,13 @@ export class User {
   })
   is_active: boolean;
 
-  @Column('text')
-  role: string;
-
   @BeforeInsert()
   emailToLowerCase() {
     this.email = this.email.toLowerCase();
   }
 
-  // @OneToOne(() => UserDetails, (userDetails) => userDetails.user)
-  // details: UserDetails;
+  @OneToOne(() => UserDetails, (userDetails) => userDetails.user)
+   details: UserDetails;
 
   // @ManyToMany(() => Profession)
   // @JoinTable()
