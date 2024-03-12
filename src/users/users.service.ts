@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ConflictException,
   Injectable,
   NotFoundException,
@@ -55,7 +56,7 @@ export class UsersService {
   private handleDBError(error: any) {
     if (error.code === "23505") throw new ConflictException("User already exists");
     
-    throw new Error("Something went wrong");
+    throw new BadRequestException("Something went wrong");
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

@@ -27,7 +27,6 @@ export class AuthService {
         id: true,
         email: true,
         password: true,
-        role: true,
       },
     });
 

@@ -1,39 +1,49 @@
-import { Column, Entity, JoinColumn, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { User} from './user.entity';
+import {
+  Column,
+  Entity,
+  OneToOne,
+  PrimaryGeneratedColumn,
+} from "typeorm";
+import { User } from "./user.entity";
+import { IsIn } from "class-validator";
 
 export enum DocumentOption {
-  AttachFile = 'Adjuntar archivo',
-  ProfessionalID = 'Cédula Profesional',
-  Skip = 'Omitir por ahora',
+  AttachFile = "Adjuntar archivo",
+  ProfessionalID = "Cédula Profesional",
+  Skip = "Omitir por ahora",
 }
 
-@Entity('user_details')
+@Entity("user_details")
 export class UserDetails {
-  @PrimaryGeneratedColumn('uuid')
+  @PrimaryGeneratedColumn("uuid")
   id: string;
 
-  @Column('boolean')
-  isProfessional?: boolean;
+  @Column("text")
+  role: string;
 
-  @Column('text', { nullable: true })
-  profession?: string;
-
-  @Column('boolean')
-  isProvider?: boolean;
-
-  @Column('text', { nullable: true })
-  brandName?: string;
+  @Column("text", { nullable: true })
+  companyName?: string;
 
   @Column({
-    type: 'enum',
-    enum: DocumentOption,
+    type: "simple-array",
     default: DocumentOption.Skip,
   })
-  documentOption?: DocumentOption;
+  @IsIn(
+    [
+      DocumentOption.AttachFile,
+      DocumentOption.ProfessionalID,
+      DocumentOption.Skip,
+    ],
+    { each: true }
+  )
+  documentOption?: DocumentOption[];
 
-  @OneToOne(()=> User)
-  @JoinColumn()
-    user: User;
+  @Column("bytea", { nullable: true })
+  attachFile?: Buffer;
 
-  
+  @Column("bytea", { nullable: true })
+  professionalID?: Buffer;
+
+  @OneToOne(() => User, (user) => user.details)
+  user: User;
 }
