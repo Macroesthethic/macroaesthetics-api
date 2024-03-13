@@ -2,14 +2,10 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  JoinTable,
-  ManyToMany,
   OneToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UserDetails } from './user-detail.entity';
-import { Profession } from './professions.entity';
-import { Providers } from './providers.entity';
 
 @Entity('users')
 export class User {

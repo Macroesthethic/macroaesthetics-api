@@ -1,49 +1,35 @@
-import {
-  Column,
-  Entity,
-  OneToOne,
-  PrimaryGeneratedColumn,
-} from "typeorm";
+import { Column, Entity, OneToOne, PrimaryGeneratedColumn } from "typeorm";
 import { User } from "./user.entity";
-import { IsIn } from "class-validator";
-
-export enum DocumentOption {
-  AttachFile = "Adjuntar archivo",
-  ProfessionalID = "Cédula Profesional",
-  Skip = "Omitir por ahora",
-}
+import { IsNotEmpty } from "class-validator";
 
 @Entity("user_details")
 export class UserDetails {
   @PrimaryGeneratedColumn("uuid")
   id: string;
 
+  @IsNotEmpty()
   @Column("text")
   role: string;
 
   @Column("text", { nullable: true })
   companyName?: string;
 
+  @Column("text")
+  country: string;
+
   @Column({
-    type: "simple-array",
-    default: DocumentOption.Skip,
+    type: "text",
+    default: "skip",
   })
-  @IsIn(
-    [
-      DocumentOption.AttachFile,
-      DocumentOption.ProfessionalID,
-      DocumentOption.Skip,
-    ],
-    { each: true }
-  )
-  documentOption?: DocumentOption[];
+  documentOption?: string;
 
-  @Column("bytea", { nullable: true })
-  attachFile?: Buffer;
+  @Column("text", { nullable: true })
+  attachFile?: string;
 
-  @Column("bytea", { nullable: true })
-  professionalID?: Buffer;
+  @Column("text", { nullable: true })
+  professionalID?: string;
 
   @OneToOne(() => User, (user) => user.details)
+  @IsNotEmpty()
   user: User;
 }

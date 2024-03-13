@@ -1,21 +1,26 @@
 import {
   BadRequestException,
   ConflictException,
+  HttpStatus,
   Injectable,
   NotFoundException,
 } from "@nestjs/common";
+import * as bcrypt from "bcrypt";
+import { Repository } from "typeorm";
+import { User } from "./entities/user.entity";
+import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
-import { Repository } from "typeorm";
-import { InjectRepository } from "@nestjs/typeorm";
-import { User } from "./entities/user.entity";
-import * as bcrypt from "bcrypt";
+import { UserDetails } from "./entities/user-detail.entity";
+import { CreateUserDetailsDto } from './dto/create-user-details.dto';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
-    private readonly usersRepository: Repository<User>
+    private readonly usersRepository: Repository<User>,
+    @InjectRepository(UserDetails)
+    private readonly usersDetailsRepository: Repository<UserDetails>
   ) {}
 
   async getAllUsers() {
@@ -36,7 +41,6 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto) {
     const { password } = createUserDto;
-
     const hashedPassword = bcrypt.hashSync(password, 10);
 
     const user = this.usersRepository.create({
@@ -53,9 +57,45 @@ export class UsersService {
     }
   }
 
+  async createDetails(createUserDetailsDto: CreateUserDetailsDto, attachFileUrl: string) {
+
+    const exitsUser = await this.usersRepository.findOne({
+      where:{
+        id: createUserDetailsDto.user
+      } 
+    })
+
+    if(!exitsUser)
+      throw new NotFoundException('User no exist')
+
+
+    const userDetail = this.usersDetailsRepository.create({
+      ...createUserDetailsDto,
+      attachFile: attachFileUrl
+      
+    });
+  }
+
+  async uploadFile(file: Express.Multer.File) {
+    //save file in folder uploads
+    const path = `./uploads/${file.originalname}`;
+    return new Promise((resolve, reject) => {
+      require
+        ("fs").writeFile(path, file.buffer, (err) => {
+          if (err) {
+            reject(err);
+          } else {
+            resolve(path);
+          }
+        });
+      });
+
+  }
+
   private handleDBError(error: any) {
-    if (error.code === "23505") throw new ConflictException("User already exists");
-    
+    if (error.code === "23505")
+      throw new ConflictException("User already exists");
+
     throw new BadRequestException("Something went wrong");
   }
 
