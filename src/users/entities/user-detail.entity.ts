@@ -14,6 +14,9 @@ export class UserDetails {
   @Column("text", { nullable: true })
   companyName?: string;
 
+  @Column("text", { nullable: true })
+  giro?: string;
+
   @Column("text")
   country: string;
 

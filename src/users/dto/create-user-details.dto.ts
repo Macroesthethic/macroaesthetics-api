@@ -14,6 +14,10 @@ export class CreateUserDetailsDto {
   @IsString()
   @IsOptional()
   companyName?: string;
+  
+  @IsString()
+  @IsOptional()
+  giro?: string;
 
   @IsString()
   @IsNotEmpty()

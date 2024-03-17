@@ -48,11 +48,4 @@ export class User {
   @OneToOne(() => UserDetails, (userDetails) => userDetails.user)
    details: UserDetails;
 
-  // @ManyToMany(() => Profession)
-  // @JoinTable()
-  // professions: Profession[];
-
-  // @ManyToMany(() => Profession)
-  // @JoinTable()
-  // providers: Providers[];
 }
