@@ -1,20 +1,46 @@
-import { IsString } from "class-validator";
-
-
-
+import {
+  IsNotEmpty,
+  IsString,
+  IsUUID,
+  IsOptional,
+  Validate,
+} from "class-validator";
+import { Express } from "express";
 
 export class CreateUserDetailsDto {
+  @IsString()
+  role: string;
 
+  @IsString()
+  @IsOptional()
+  companyName?: string;
+  
+  @IsString()
+  @IsOptional()
+  giro?: string;
 
-    @IsString()
-    role: string;
+  @IsString()
+  @IsNotEmpty()
+  country: string;
 
-    @IsString()
-    companyName?: string;
+  // @IsOptional()
+  // @Validate(
+  //   (value: Express.Multer.File) => value.mimetype === "application/pdf",
+  //   {
+  //     message: "Invalid file type",
+  //   }
+  // )
+  // attachFile?: Express.Multer.File;
 
-    @IsString({ each: true })
-    documentOption?: string[];
+  @IsString()
+  @IsOptional()
+  professionalID?: string;
 
-    user: string;
+  @IsString()
+  @IsOptional()
+  documentOption?: string;
 
+  @IsUUID()
+  @IsNotEmpty()
+  user: string;
 }
