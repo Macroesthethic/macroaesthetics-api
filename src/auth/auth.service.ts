@@ -23,14 +23,20 @@ export class AuthService {
 
     const user = await this.userRepository.findOne({
       where: { email: email },
-      select: {
-        id: true,
-        email: true,
-        password: true,
-      },
+      select: [
+        "id",
+        "email",
+        "password",
+        "name",
+        "details"
+      ],
+      relations: ["details"],
     });
+    console.log(user)
 
     if (!user) throw new UnauthorizedException("Invalid credentials");
+
+    const role = user.details? user.details.role : "user";
 
     if (!bcrypt.compareSync(password, user.password))
       throw new UnauthorizedException("Invalid credentials");
@@ -38,8 +44,7 @@ export class AuthService {
     return {
       status: HttpStatus.OK,
       message: "User logged in successfully",  
-      token: this.generateToken({ email: user.email, id: user.id }),
-      user: user,
+      token: this.generateToken({ email: user.email, id: user.id, name: user.name, role: role}),
     };
   }
 
