@@ -6,7 +6,7 @@ import {
   NotFoundException,
 } from "@nestjs/common";
 import * as bcrypt from "bcrypt";
-import { Repository } from "typeorm";
+import { DeepPartial, Repository } from "typeorm";
 import { User } from "./entities/user.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
@@ -21,7 +21,7 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
     @InjectRepository(UserDetails)
     private readonly usersDetailsRepository: Repository<UserDetails>
-  ) {}
+  ) { }
 
   async getAllUsers() {
     const users = await this.usersRepository.find();
@@ -57,23 +57,34 @@ export class UsersService {
     }
   }
 
-  async createDetails(createUserDetailsDto: CreateUserDetailsDto, attachFileUrl: string) {
+  async createDetails(createUserDetailsDto: CreateUserDetailsDto) {
 
     const exitsUser = await this.usersRepository.findOne({
-      where:{
+      where: {
         id: createUserDetailsDto.user
-      } 
+      }
     })
 
-    if(!exitsUser)
+    console.log("entra aca", exitsUser);
+
+    if (!exitsUser) {
       throw new NotFoundException('User no exist')
+    }
 
-
-    const userDetail = this.usersDetailsRepository.create({
+    const userDetailsData: DeepPartial<UserDetails> = {
       ...createUserDetailsDto,
-      attachFile: attachFileUrl
-      
-    });
+      user: exitsUser
+    }
+
+    const userDetail = this.usersDetailsRepository.create(userDetailsData);
+
+    try {
+      await this.usersDetailsRepository.save(userDetail);
+      return userDetail;
+    }
+    catch (e) {
+      return this.handleDBError(e);
+    }
   }
 
   async uploadFile(file: Express.Multer.File) {
@@ -88,15 +99,16 @@ export class UsersService {
             resolve(path);
           }
         });
-      });
-
+    });
   }
 
   private handleDBError(error: any) {
     if (error.code === "23505")
       throw new ConflictException("User already exists");
 
-    throw new BadRequestException("Something went wrong");
+    throw new BadRequestException("Oops something went wrong!");
+
+    
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {

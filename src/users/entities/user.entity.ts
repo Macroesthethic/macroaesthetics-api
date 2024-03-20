@@ -2,7 +2,7 @@ import {
   BeforeInsert,
   Column,
   Entity,
-  OneToOne,
+  ManyToOne,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 import { UserDetails } from './user-detail.entity';
@@ -45,7 +45,7 @@ export class User {
     this.email = this.email.toLowerCase();
   }
 
-  @OneToOne(() => UserDetails, (userDetails) => userDetails.user)
+  @ManyToOne(() => UserDetails, (userDetails) => userDetails.user)
    details: UserDetails;
 
 }

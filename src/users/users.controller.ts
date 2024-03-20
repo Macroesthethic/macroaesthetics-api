@@ -55,19 +55,21 @@ export class UsersController {
   }
 
   @Post("register/details")
-  @UseInterceptors(FileInterceptor("attachFile"))
+  // @UseInterceptors(FileInterceptor("attachFile"))
   async createDetails(
-    @UploadedFile() file: Express.Multer.File,
+    // @UploadedFile() file: Express.Multer.File,
     @Body() createUserDetailsDto: CreateUserDetailsDto
   ) {
-    let attachFileUrl = null;
-    if (file) {
-      attachFileUrl = await this.usersService.uploadFile(file);
-    }
+    // let attachFileUrl = null;
+    // if (file) {
+    //   attachFileUrl = await this.usersService.uploadFile(file);
+    // }
     const newUserDetails = await this.usersService.createDetails(
       createUserDetailsDto,
-      attachFileUrl
+      // attachFileUrl
     );
+
+    return newUserDetails;
   }
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {

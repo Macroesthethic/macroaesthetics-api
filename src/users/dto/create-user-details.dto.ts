@@ -23,22 +23,22 @@ export class CreateUserDetailsDto {
   @IsNotEmpty()
   country: string;
 
-  @IsString()
-  @IsOptional()
-  documentOption?: string;
-
-  @IsOptional()
-  @Validate(
-    (value: Express.Multer.File) => value.mimetype === "application/pdf",
-    {
-      message: "Invalid file type",
-    }
-  )
-  attachFile?: Express.Multer.File;
+  // @IsOptional()
+  // @Validate(
+  //   (value: Express.Multer.File) => value.mimetype === "application/pdf",
+  //   {
+  //     message: "Invalid file type",
+  //   }
+  // )
+  // attachFile?: Express.Multer.File;
 
   @IsString()
   @IsOptional()
   professionalID?: string;
+
+  @IsString()
+  @IsOptional()
+  documentOption?: string;
 
   @IsUUID()
   @IsNotEmpty()

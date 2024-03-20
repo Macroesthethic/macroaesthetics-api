@@ -39,6 +39,7 @@ export class AuthService {
       status: HttpStatus.OK,
       message: "User logged in successfully",  
       token: this.generateToken({ email: user.email, id: user.id }),
+      user: user,
     };
   }
 
