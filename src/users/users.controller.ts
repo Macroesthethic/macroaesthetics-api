@@ -25,7 +25,7 @@ export class UsersController {
   constructor(
     private readonly usersService: UsersService,
     private readonly phoneValidationService: PhoneValidationService
-  ) {}
+  ) { }
 
   @Get()
   async getAllUsers(): Promise<User[]> {
@@ -41,17 +41,9 @@ export class UsersController {
 
   @Post("register")
   async create(@Body() createUserDto: CreateUserDto) {
-    const { phone, countryCode } = createUserDto;
-    const isValid = this.phoneValidationService.validateNumber(
-      phone,
-      countryCode
-    );
-    if (!isValid) {
-      throw new BadRequestException("Invalid phone number");
-    } else {
       const newUser = await this.usersService.create(createUserDto);
       return newUser;
-    }
+    
   }
 
   @Post("register/details")

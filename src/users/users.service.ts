@@ -106,7 +106,8 @@ export class UsersService {
     if (error.code === "23505")
       throw new ConflictException("User already exists");
 
-    throw new BadRequestException("Oops something went wrong!");
+    // throw new BadRequestException("Oops something went wrong!", error);
+    console.log("error", error);
 
     
   }

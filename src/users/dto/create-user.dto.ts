@@ -2,6 +2,7 @@ import {
   IsEmail,
   IsISO31661Alpha2,
   IsNotEmpty,
+  IsNumber,
   IsPhoneNumber,
   IsString,
   Matches,
@@ -18,12 +19,12 @@ export class CreateUserDto {
   @IsNotEmpty()
   lastname: string;
 
- @IsPhoneNumber()
+ @IsNumber()
  @IsNotEmpty()
-  phone: string;
+  phone: number;
 
   @IsNotEmpty()
-  @IsISO31661Alpha2()
+  @IsString()
   countryCode: string;
 
   @IsEmail()

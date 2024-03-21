@@ -32,11 +32,10 @@ export class AuthService {
       ],
       relations: ["details"],
     });
-    console.log(user)
 
     if (!user) throw new UnauthorizedException("Invalid credentials");
 
-    const role = user.details? user.details.role : "user";
+    const role = user.details[0]? user.details[0].role : "user";
 
     if (!bcrypt.compareSync(password, user.password))
       throw new UnauthorizedException("Invalid credentials");
