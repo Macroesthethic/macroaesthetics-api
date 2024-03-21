@@ -28,14 +28,12 @@ export class AuthService {
         "email",
         "password",
         "name",
-        "details"
+        "role",
       ],
-      relations: ["details"],
     });
 
     if (!user) throw new UnauthorizedException("Invalid credentials");
 
-    const role = user.details[0]? user.details[0].role : "user";
 
     if (!bcrypt.compareSync(password, user.password))
       throw new UnauthorizedException("Invalid credentials");
@@ -43,7 +41,7 @@ export class AuthService {
     return {
       status: HttpStatus.OK,
       message: "User logged in successfully",  
-      token: this.generateToken({ email: user.email, id: user.id, name: user.name, role: role}),
+      token: this.generateToken({ email: user.email, id: user.id, name: user.name, role: user.role}),
     };
   }
 

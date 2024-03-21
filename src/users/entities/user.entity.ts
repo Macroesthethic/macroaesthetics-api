@@ -5,7 +5,7 @@ import {
   OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
-import { UserDetails } from './user-detail.entity';
+import { IsNotEmpty } from 'class-validator';
 
 @Entity('users')
 export class User {
@@ -32,6 +32,34 @@ export class User {
   })
   password: string;
 
+  @Column("bool", { default: false, nullable: false })
+  isProfessional?: boolean;
+
+  @Column("bool", { default: false, nullable: false })
+  isProvider?: boolean;
+
+  @IsNotEmpty()
+  @Column("text")
+  role: string;
+
+  @Column("text", { nullable: true })
+  companyName?: string;
+
+  @Column("text", { nullable: true })
+  giro?: string;
+
+  @Column("text")
+  country: string;
+
+  @Column("text", { nullable: true })
+  attachFile?: string;
+
+  @Column("text", { nullable: true })
+  professionalID?: string;
+
+  @Column({ type: "bool", default: false, nullable: false})
+  isFileUpload?: boolean;
+
   @Column({ type: 'timestamp', default: () => 'CURRENT_TIMESTAMP' })
   created_at: Date;
 
@@ -47,8 +75,5 @@ export class User {
   emailToLowerCase() {
     this.email = this.email.toLowerCase();
   }
-
-  @OneToMany(() => UserDetails, (userDetails) => userDetails.user)
-   details: UserDetails;
 
 }
