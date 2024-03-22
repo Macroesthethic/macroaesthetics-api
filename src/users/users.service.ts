@@ -48,7 +48,7 @@ export class UsersService {
     try {
       await this.usersRepository.save(user);
       delete user.password;
-      return user;
+      return HttpStatus.CREATED;
     } catch (e) {
       return this.handleDBError(e);
     }
