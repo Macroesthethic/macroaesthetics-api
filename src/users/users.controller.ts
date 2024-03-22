@@ -37,7 +37,7 @@ export class UsersController {
   }
 
   @Post("register")
-  @UseInterceptors(FileInterceptor("file"))
+  @UseInterceptors(FileInterceptor("attachFile"))
   async create
     (@UploadedFile() attachFile: Express.Multer.File,
       @Body() createUserDto: CreateUserDto) {
