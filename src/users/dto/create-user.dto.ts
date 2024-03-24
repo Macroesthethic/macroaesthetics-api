@@ -43,8 +43,20 @@ export class CreateUserDto {
   @IsOptional()
   isProfessional?: boolean;
 
+  @IsString()
+  @IsOptional()
+  professionName?: string;
+
+  @IsString()
+  @IsOptional()
+  otherProfession?: string;
+
   @IsOptional()
   isProvider?: boolean;
+
+  @IsString()
+  @IsOptional()
+  otherProvider?: string;
 
   @IsString()
   role: string;
@@ -70,11 +82,11 @@ export class CreateUserDto {
   )
   attachFile?: Express.Multer.File;
 
-  @IsString()
+  @IsNumber()
   @IsOptional()
-  professionalID?: string;
+  professionalID?: number;
 
-  
+
   @IsOptional()
   isFileUpload: boolean;
 

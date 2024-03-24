@@ -39,12 +39,13 @@ export class UsersService {
     const { password } = createUserDto;
     const hashedPassword = bcrypt.hashSync(password, 10);
 
-    const user = this.usersRepository.create({
+    const user: DeepPartial<User> = {
       ...createUserDto,
       password: hashedPassword,
       attachFile: attachFileUrl,
-    });
+    };
 
+    
     try {
       await this.usersRepository.save(user);
       delete user.password;
