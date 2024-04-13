@@ -48,6 +48,15 @@ export class User {
   @Column("text", { nullable: true })
   giro?: string;
 
+  @Column("bool", { default: false, nullable: true })
+  isEstheticMedicine?: boolean;
+  
+  @Column("bool", { default: false, nullable: true })
+  isEstheticBeauty?: boolean;
+
+  @Column("text", { nullable: true })
+  otherProfessionDirect?: string;
+
   @Column("text")
   country: string;
 
