@@ -4,7 +4,6 @@ import { UsersController } from './users.controller';
 import { Type } from 'class-transformer';
 import { User } from './entities/user.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { PhoneValidationService } from './services/phone-validation/phone-validation.service';
 
 @Module({
   imports: [
@@ -14,6 +13,6 @@ import { PhoneValidationService } from './services/phone-validation/phone-valida
 
   
   controllers: [UsersController],
-  providers: [UsersService, PhoneValidationService],
+  providers: [UsersService],
 })
 export class UsersModule {}

@@ -35,8 +35,17 @@ export class User {
   @Column("bool", { default: false, nullable: false })
   isProfessional?: boolean;
 
+  @Column("text", { nullable: true })
+  professionName?: string;
+
+  @Column("text", { nullable: true })
+  otherProfession?: string;
+
   @Column("bool", { default: false, nullable: false })
   isProvider?: boolean;
+
+  @Column("text", { nullable: true })
+  otherProvider?: string;
 
   @IsNotEmpty()
   @Column("text")
@@ -63,8 +72,8 @@ export class User {
   @Column("text", { nullable: true })
   attachFile?: string;
 
-  @Column("text", { nullable: true })
-  professionalID?: string;
+  @Column("bigint", { nullable: true })
+  professionalID?: number;
 
   @Column({ type: "bool", default: false, nullable: false})
   isFileUpload?: boolean;
