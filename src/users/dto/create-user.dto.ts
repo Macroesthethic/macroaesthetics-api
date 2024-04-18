@@ -69,6 +69,15 @@ export class CreateUserDto {
   @IsOptional()
   giro?: string;
 
+  @IsOptional()
+  isEstheticMedicine?: boolean;
+
+  @IsOptional()
+  isEstheticBeauty?: boolean;
+
+  @IsOptional()
+  otherProfessionDirect?: string;
+
   @IsString()
   @IsNotEmpty()
   country: string;
