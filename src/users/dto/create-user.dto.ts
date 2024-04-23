@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import {
   IsEmail,
   IsNotEmpty,
@@ -83,13 +84,8 @@ export class CreateUserDto {
   country: string;
 
   @IsOptional()
-  @Validate(
-    (value: Express.Multer.File) => value.mimetype === "application/pdf",
-    {
-      message: "Invalid file type",
-    }
-  )
-  attachFile?: Express.Multer.File;
+  @Transform(({ value }) => new Blob([value], { type: 'application/pdf' }))
+  attachFile?: Blob;
 
   @IsNumber()
   @IsOptional()
