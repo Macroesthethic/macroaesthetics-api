@@ -6,16 +6,14 @@ import {
   Patch,
   Param,
   Delete,
-  BadRequestException,
   UseInterceptors,
-  UploadedFile,
+  UploadedFiles,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ApiTags } from "@nestjs/swagger";
 import { User } from "./entities/user.entity";
-import { FileInterceptor } from "@nestjs/platform-express";
+import { AnyFilesInterceptor, FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 
 
@@ -38,46 +36,21 @@ export class UsersController {
     return users;
   }
 
-  @Post('register')
-  @UseInterceptors(FileInterceptor('attachFile', {
+  @UseInterceptors(
+    AnyFilesInterceptor({
     storage: diskStorage({
-      destination:'./uploads',
+      destination:'uploads',
         filename: (req, file, cb) => {
-          const filename = file.originalname.split('.')[0];
-          const extension = file.originalname.split('.')[1];
-          cb(null, `${filename}-${Date.now()}.${extension}`);
+          console.log(file)
+          cb(null, (file.filename = file.originalname));
         }
     })
   }))
-  async create(@UploadedFile() attachFile: Express.Multer.File, @Body() createUserDto: CreateUserDto) {
-    console.log("createUserDto",createUserDto.attachFile);
-    console.log("attachFile",attachFile);
-  
-    // let attachFileUrl = null;
-    // if (attachFile) {
-    //   attachFileUrl = await this.usersService.uploadFile(attachFile);
-    // }
-    // const newUser = await this.usersService.create(createUserDto, attachFileUrl);
-    // return newUser;
+  @Post('register')
+  async create(@UploadedFiles() files: Express.Multer.File, @Body() createUserDto ) {
+    return null;
   }
 
-  
-
-  // @Post("register")
-  // @UseInterceptors(FileInterceptor("attachFile"))
-  // async create
-  //   (@UploadedFile() attachFile: Express.Multer.File,
-  //     @Body() createUserDto: CreateUserDto) {
-
-
-  //       console.log("attachFile", attachFile);
-  //   // let attachFileUrl = null;
-  //   // if (attachFile) {
-  //   //   attachFileUrl = await this.usersService.uploadFile(attachFile);
-  //   // }
-  //   // const newUser = await this.usersService.create(createUserDto, attachFileUrl);
-  //   // return newUser;
-  // }
 
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {

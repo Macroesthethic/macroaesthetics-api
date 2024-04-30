@@ -83,10 +83,6 @@ export class CreateUserDto {
   @IsNotEmpty()
   country: string;
 
-  @IsOptional()
-  @Transform(({ value }) => new Blob([value], { type: 'application/pdf' }))
-  attachFile?: Blob;
-
   @IsNumber()
   @IsOptional()
   professionalID?: number;
