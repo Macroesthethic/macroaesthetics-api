@@ -1,3 +1,4 @@
+import { Transform } from "class-transformer";
 import {
   IsEmail,
   IsNotEmpty,
@@ -25,10 +26,12 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(10)
   countryCode: string;
 
   @IsEmail()
   @IsNotEmpty()
+  @MaxLength(50)
   email: string;
 
   @IsString()
@@ -69,23 +72,22 @@ export class CreateUserDto {
   @IsOptional()
   giro?: string;
 
+  @IsOptional()
+  isEstheticMedicine?: boolean;
+
+  @IsOptional()
+  isEstheticBeauty?: boolean;
+
+  @IsOptional()
+  otherProfessionDirect?: string;
+
   @IsString()
   @IsNotEmpty()
   country: string;
 
-  @IsOptional()
-  @Validate(
-    (value: Express.Multer.File) => value.mimetype === "application/pdf",
-    {
-      message: "Invalid file type",
-    }
-  )
-  attachFile?: Express.Multer.File;
-
   @IsNumber()
   @IsOptional()
   professionalID?: number;
-
 
   @IsOptional()
   isFileUpload: boolean;

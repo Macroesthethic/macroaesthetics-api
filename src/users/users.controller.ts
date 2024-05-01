@@ -6,16 +6,17 @@ import {
   Patch,
   Param,
   Delete,
-  BadRequestException,
   UseInterceptors,
-  UploadedFile,
+  UploadedFiles,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
-import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
 import { ApiTags } from "@nestjs/swagger";
 import { User } from "./entities/user.entity";
-import { FileInterceptor } from "@nestjs/platform-express";
+import { AnyFilesInterceptor, FileInterceptor } from "@nestjs/platform-express";
+import { diskStorage } from "multer";
+import { CreateUserDto } from "./dto/create-user.dto";
+
 
 @ApiTags("users")
 @Controller("users")
@@ -36,25 +37,33 @@ export class UsersController {
     return users;
   }
 
-  @Post("register")
-  @UseInterceptors(FileInterceptor("attachFile"))
-  async create
-    (@UploadedFile() attachFile: Express.Multer.File,
-      @Body() createUserDto: CreateUserDto) {
+  @UseInterceptors(
+    AnyFilesInterceptor({
+    storage: diskStorage({
+      destination:'uploads',
+        filename: (req, file, cb) => {
+          cb(null, (file.filename = file.originalname));
+        }
+    })
+  }))
+  @Post('register')
+  async create(@UploadedFiles() file: Express.Multer.File, @Body() createUserDto) {
+   const attachFileUrl = file[0].path
+    const user = await this.usersService.create(createUserDto, attachFileUrl);
+    return user;
+  }
 
-    let attachFileUrl = null;
-    if (attachFile) {
-      attachFileUrl = await this.usersService.uploadFile(attachFile);
-    }
-    const newUser = await this.usersService.create(createUserDto, attachFileUrl);
-    return newUser;
+  @Get('getFile/:id')
+  async getFile(@Param("id") id:string ){
+    const file = await this.usersService.getFile(id);
+    return file;
   }
 
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
-
+  
   @Delete(":id")
   remove(@Param("id") id: string) {
     return this.usersService.remove(+id);

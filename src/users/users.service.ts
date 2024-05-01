@@ -11,6 +11,8 @@ import { User } from "./entities/user.entity";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
 import { UpdateUserDto } from "./dto/update-user.dto";
+import * as fs from 'fs';
+import * as path from 'path';
 
 @Injectable()
 export class UsersService {
@@ -35,7 +37,7 @@ export class UsersService {
     throw new NotFoundException("Could not find any user");
   }
 
-  async create(createUserDto: CreateUserDto, attachFileUrl: string | null) {
+  async create(createUserDto:CreateUserDto , attachFileUrl: string | null) {
     const { password } = createUserDto;
     const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -45,7 +47,6 @@ export class UsersService {
       attachFile: attachFileUrl,
     };
 
-    
     try {
       await this.usersRepository.save(user);
       delete user.password;
@@ -54,30 +55,27 @@ export class UsersService {
       return this.handleDBError(e);
     }
   }
-  
-  async uploadFile(file: Express.Multer.File) {
-    //save file in folder uploads
-    const path = `./uploads/${file.originalname}`;
-    return new Promise((resolve, reject) => {
-      require
-        ("fs").writeFile(path, file.buffer, (err) => {
-          if (err) {
-            reject(err);
-          } else {
-            resolve(path);
-          }
-        });
-    });
+
+  async getFile(id: string):Promise<Buffer> {
+    const user = await this.getUserById(id);
+    if(!user) {
+      throw new NotFoundException("User not found");
+    }
+
+    const userFileUrl = user.attachFile;
+    const file = path.join(__dirname, '..', '..', userFileUrl);
+
+    if(!fs.existsSync(file)) {
+      throw new NotFoundException("File not found");
+    }
+
+    const fileBuffer = fs.readFileSync(file);
+    return fileBuffer;
   }
 
   private handleDBError(error: any) {
     if (error.code === "23505")
       throw new ConflictException("User already exists");
-
-    // throw new BadRequestException("Oops something went wrong!", error);
-    console.log("error", error);
-
-    
   }
 
   update(id: number, updateUserDto: UpdateUserDto) {
