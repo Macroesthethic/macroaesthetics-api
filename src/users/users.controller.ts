@@ -8,6 +8,9 @@ import {
   Delete,
   UseInterceptors,
   UploadedFiles,
+  Header,
+  NotFoundException,
+  Res,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -16,6 +19,9 @@ import { User } from "./entities/user.entity";
 import { AnyFilesInterceptor, FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
 import { CreateUserDto } from "./dto/create-user.dto";
+import { of } from "rxjs";
+import { join } from "path";
+import { readFile } from "fs";
 
 
 @ApiTags("users")
@@ -48,15 +54,22 @@ export class UsersController {
   }))
   @Post('register')
   async create(@UploadedFiles() file: Express.Multer.File, @Body() createUserDto) {
-   const attachFileUrl = file[0].path
+   const attachFileUrl = file[0].path ?? null;
     const user = await this.usersService.create(createUserDto, attachFileUrl);
     return user;
   }
 
   @Get('getFile/:id')
-  async getFile(@Param("id") id:string ){
-    const file = await this.usersService.getFile(id);
-    return file;
+  @Header('Content-type', 'application/pdf')
+  async getFile(@Param("id") id:string, @Res() res){
+    const file = await this.usersService.getUserById(id);
+
+    if(!file) {
+      throw new NotFoundException("User not found");
+    }
+
+    const userFileUrl = file.attachFile;
+    return of (res.sendFile(join(process.cwd(), userFileUrl)));
   }
 
   @Patch(":id")

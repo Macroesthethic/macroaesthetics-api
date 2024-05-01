@@ -38,13 +38,17 @@ export class UsersService {
   }
 
   async create(createUserDto:CreateUserDto , attachFileUrl: string | null) {
-    const { password } = createUserDto;
+    const { password, } = createUserDto;
     const hashedPassword = bcrypt.hashSync(password, 10);
+
+    
 
     const user: DeepPartial<User> = {
       ...createUserDto,
       password: hashedPassword,
       attachFile: attachFileUrl,
+      is_active: attachFileUrl ? false : true,
+
     };
 
     try {
@@ -54,23 +58,6 @@ export class UsersService {
     } catch (e) {
       return this.handleDBError(e);
     }
-  }
-
-  async getFile(id: string):Promise<Buffer> {
-    const user = await this.getUserById(id);
-    if(!user) {
-      throw new NotFoundException("User not found");
-    }
-
-    const userFileUrl = user.attachFile;
-    const file = path.join(__dirname, '..', '..', userFileUrl);
-
-    if(!fs.existsSync(file)) {
-      throw new NotFoundException("File not found");
-    }
-
-    const fileBuffer = fs.readFileSync(file);
-    return fileBuffer;
   }
 
   private handleDBError(error: any) {
