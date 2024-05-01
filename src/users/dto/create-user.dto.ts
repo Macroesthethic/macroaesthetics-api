@@ -26,10 +26,12 @@ export class CreateUserDto {
 
   @IsNotEmpty()
   @IsString()
+  @MaxLength(10)
   countryCode: string;
 
   @IsEmail()
   @IsNotEmpty()
+  @MaxLength(50)
   email: string;
 
   @IsString()
@@ -86,7 +88,6 @@ export class CreateUserDto {
   @IsNumber()
   @IsOptional()
   professionalID?: number;
-
 
   @IsOptional()
   isFileUpload: boolean;

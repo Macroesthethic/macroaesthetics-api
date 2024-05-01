@@ -15,6 +15,7 @@ import { ApiTags } from "@nestjs/swagger";
 import { User } from "./entities/user.entity";
 import { AnyFilesInterceptor, FileInterceptor } from "@nestjs/platform-express";
 import { diskStorage } from "multer";
+import { CreateUserDto } from "./dto/create-user.dto";
 
 
 @ApiTags("users")
@@ -41,22 +42,28 @@ export class UsersController {
     storage: diskStorage({
       destination:'uploads',
         filename: (req, file, cb) => {
-          console.log(file)
           cb(null, (file.filename = file.originalname));
         }
     })
   }))
   @Post('register')
-  async create(@UploadedFiles() files: Express.Multer.File, @Body() createUserDto ) {
-    return null;
+  async create(@UploadedFiles() file: Express.Multer.File, @Body() createUserDto) {
+   const attachFileUrl = file[0].path
+    const user = await this.usersService.create(createUserDto, attachFileUrl);
+    return user;
   }
 
+  @Get('getFile/:id')
+  async getFile(@Param("id") id:string ){
+    const file = await this.usersService.getFile(id);
+    return file;
+  }
 
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
-
+  
   @Delete(":id")
   remove(@Param("id") id: string) {
     return this.usersService.remove(+id);

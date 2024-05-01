@@ -89,9 +89,22 @@ export class User {
   })
   is_active: boolean;
 
+  //convert to lowercase name, lastname, professionName, otherProfession, otherProvider, role, companyName, giro, otherProfessionDirect, country
+//all in one function
+
   @BeforeInsert()
-  emailToLowerCase() {
+  lowercase() {
+    this.name = this.name.toLowerCase();
+    this.lastname = this.lastname.toLowerCase();
     this.email = this.email.toLowerCase();
+    this.professionName = this.professionName.toLowerCase();
+    this.otherProfession = this.otherProfession.toLowerCase();
+    this.otherProvider = this.otherProvider.toLowerCase();
+    this.role = this.role.toLowerCase();
+    this.companyName = this.companyName.toLowerCase();
+    this.giro = this.giro.toLowerCase();
+    this.otherProfessionDirect = this.otherProfessionDirect.toLowerCase();
+    this.country = this.country.toLowerCase();
   }
 
 }
