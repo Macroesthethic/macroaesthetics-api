@@ -5,6 +5,10 @@
 /.env
 /uploads
 /nginx/ssh
+<<<<<<< HEAD
+=======
+
+>>>>>>> 7d0d542255ff4e6093fb356f0d7f250f2555eb1b
 
 # Logs
 logs
