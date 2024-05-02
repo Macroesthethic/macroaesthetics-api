@@ -29,6 +29,7 @@ export class AuthService {
         "password",
         "name",
         "role",
+        "is_active",
       ],
     });
 
