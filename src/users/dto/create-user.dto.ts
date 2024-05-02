@@ -92,4 +92,7 @@ export class CreateUserDto {
   isFileUpload: boolean;
 
   created_at: Date;
+
+  @IsOptional()
+  is_active: boolean;
 }
