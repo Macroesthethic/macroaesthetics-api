@@ -45,38 +45,38 @@ export class UsersController {
 
   @UseInterceptors(
     AnyFilesInterceptor({
-    storage: diskStorage({
-      destination:'uploads',
+      storage: diskStorage({
+        destination: 'uploads',
         filename: (req, file, cb) => {
           cb(null, (file.filename = file.originalname));
         }
-    })
-  }))
+      })
+    }))
   @Post('register')
   async create(@UploadedFiles() file: Express.Multer.File, @Body() createUserDto) {
-   const attachFileUrl = file[0].path ?? null;
+    const attachFileUrl = file[0]?.path ?? null;
     const user = await this.usersService.create(createUserDto, attachFileUrl);
     return user;
   }
 
   @Get('getFile/:id')
   @Header('Content-type', 'application/pdf')
-  async getFile(@Param("id") id:string, @Res() res){
+  async getFile(@Param("id") id: string, @Res() res) {
     const file = await this.usersService.getUserById(id);
 
-    if(!file) {
+    if (!file) {
       throw new NotFoundException("User not found");
     }
 
     const userFileUrl = file.attachFile;
-    return of (res.sendFile(join(process.cwd(), userFileUrl)));
+    return of(res.sendFile(join(process.cwd(), userFileUrl)));
   }
 
   @Patch(":id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
     return this.usersService.update(+id, updateUserDto);
   }
-  
+
   @Delete(":id")
   remove(@Param("id") id: string) {
     return this.usersService.remove(+id);

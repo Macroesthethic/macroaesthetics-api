@@ -37,26 +37,25 @@ export class UsersService {
     throw new NotFoundException("Could not find any user");
   }
 
-  async create(createUserDto:CreateUserDto , attachFileUrl: string | null) {
-    const { password, } = createUserDto;
-    const hashedPassword = bcrypt.hashSync(password, 10);
-
-    
-
-    const user: DeepPartial<User> = {
-      ...createUserDto,
-      password: hashedPassword,
-      attachFile: attachFileUrl,
-      is_active: attachFileUrl ? false : true,
-
-    };
-
+  async create(createUserDto: CreateUserDto, attachFileUrl: string | null) {
     try {
+      
+      const { password, } = createUserDto;
+      const hashedPassword = bcrypt.hashSync(password, 10);
+
+      const user = this.usersRepository.create({
+        ...createUserDto,
+        password: hashedPassword,
+        attachFile: attachFileUrl,
+        is_active: attachFileUrl ? false : true,
+
+      });
+
       await this.usersRepository.save(user);
-      delete user.password;
       return HttpStatus.CREATED;
-    } catch (e) {
-      return this.handleDBError(e);
+
+    } catch (error) {
+      return this.handleDBError(error);
     }
   }
 
