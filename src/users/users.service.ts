@@ -39,7 +39,7 @@ export class UsersService {
 
   async create(createUserDto: CreateUserDto, attachFileUrl: string | null) {
     try {
-      
+
       const { password, } = createUserDto;
       const hashedPassword = bcrypt.hashSync(password, 10);
 
@@ -64,8 +64,21 @@ export class UsersService {
       throw new ConflictException("User already exists");
   }
 
-  update(id: number, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.getUserById(id);
+
+    if (!user) throw new NotFoundException("User not found");
+
+    await this.usersRepository.save({
+      ...user,
+      ...updateUserDto,
+    });
+
+    return {
+      status: HttpStatus.OK,
+      message: "User updated successfully",
+    };
+
   }
 
   remove(id: number) {

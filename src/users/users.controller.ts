@@ -11,6 +11,7 @@ import {
   Header,
   NotFoundException,
   Res,
+  Put,
 } from "@nestjs/common";
 import { UsersService } from "./users.service";
 import { UpdateUserDto } from "./dto/update-user.dto";
@@ -72,9 +73,9 @@ export class UsersController {
     return of(res.sendFile(join(process.cwd(), userFileUrl)));
   }
 
-  @Patch(":id")
+  @Put("updateUser/:id")
   update(@Param("id") id: string, @Body() updateUserDto: UpdateUserDto) {
-    return this.usersService.update(+id, updateUserDto);
+    return this.usersService.update(id, updateUserDto);
   }
 
   @Delete(":id")
