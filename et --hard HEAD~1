@@ -1,0 +1,383 @@
+[33mcommit 86c3cdcd05c73a2c0b3be89051b44736ba774555[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Thu May 2 22:56:50 2024 +0000
+
+    esto cambio
+
+[33mcommit a20f913725628e8d6e258ef6dc36d2d8c3994c8b[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Thu May 2 22:52:03 2024 +0000
+
+    prueba com
+
+[33mcommit 7d0d542255ff4e6093fb356f0d7f250f2555eb1b[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Ubuntu <ubuntu@ip-172-31-24-104.us-east-2.compute.internal>
+Date:   Thu May 2 22:47:27 2024 +0000
+
+    feat : lintstaged and commitlint config
+
+[33mcommit d9bcd1bcbd9b0eaf476a3a055a69885c034324f3[m
+Author: Ubuntu <ubuntu@ip-172-31-24-104.us-east-2.compute.internal>
+Date:   Thu May 2 22:39:44 2024 +0000
+
+    FIX : husky config
+
+[33mcommit c6e48449d21d7332978d9ba2bcc31008fac8a68c[m
+Author: Ubuntu <ubuntu@ip-172-31-24-104.us-east-2.compute.internal>
+Date:   Thu May 2 22:36:22 2024 +0000
+
+    test : husky lint commits
+
+[33mcommit 3bf99cb18a27b57611e53e855ba24695bb0d483b[m
+Author: Ubuntu <ubuntu@ip-172-31-24-104.us-east-2.compute.internal>
+Date:   Thu May 2 21:55:23 2024 +0000
+
+    CONFIG : husky and commitlint
+
+[33mcommit c2c5db856eac2bc68d4bb6937aa8188ee5e99cd1[m
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Thu May 2 16:36:16 2024 -0500
+
+    Update main.yml
+
+[33mcommit e50a078b361e2c91a2ed9550cde32b21cd7c124d[m
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Thu May 2 16:20:30 2024 -0500
+
+    Update main.yml
+
+[33mcommit 0f3ad11fd001129447bfeda3e9570b117ef809bc[m
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Thu May 2 16:11:29 2024 -0500
+
+    Create main.yml
+
+[33mcommit f7947df9904d21eb1e92b7f67b69d5d914466607[m
+Merge: ae5a4d3 d83b6b1
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Thu May 2 10:49:18 2024 -0500
+
+    Merge pull request #8 from Macroesthethic/javi
+    
+    ADD:changes update users with rol and state
+
+[33mcommit d83b6b19c8513024b5649dbf23a1178254f45635[m[33m ([m[1;31morigin/javi[m[33m)[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu May 2 10:48:35 2024 -0500
+
+    ADD:changes update users with rol and state
+
+[33mcommit ae5a4d35cb83ffb502af25f8e1484b90d35d3396[m
+Merge: e93f5ee 72f2b98
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Thu May 2 09:33:02 2024 -0500
+
+    Merge pull request #7 from Macroesthethic/javi
+    
+    ADD:implementation method update a user
+
+[33mcommit 72f2b98a09f266e75c61a16c4dd92d39d4f7180f[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu May 2 09:32:06 2024 -0500
+
+    ADD:implementation method update a user
+
+[33mcommit e93f5ee94160d9743ca358a6d2d6b6fb735d51ea[m
+Merge: d2ca54e b7bedd9
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Wed May 1 23:19:48 2024 -0500
+
+    Merge pull request #6 from Macroesthethic/JaviCode
+    
+    ADD: added is_active in to token
+
+[33mcommit b7bedd946a4bc303cf38c438c71d96fa28304636[m[33m ([m[1;31morigin/JaviCode[m[33m)[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Wed May 1 23:18:45 2024 -0500
+
+    ADD: added is_active in to token
+
+[33mcommit d2ca54eebb1dc46264ec4d90888a0d49543ee549[m
+Merge: 0cb914f 1a6dc3d
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Wed May 1 23:09:10 2024 -0500
+
+    Merge pull request #5 from Macroesthethic/JaviCode
+    
+    FIX : Register user with file or not
+
+[33mcommit 1a6dc3d2c7da509a0c7bb8c9b4f92303bd3e0bc4[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Wed May 1 23:08:21 2024 -0500
+
+    FIX : Register user with file or not
+
+[33mcommit 0cb914fd144988e767ab8636ad32954fd1a9ae26[m
+Merge: 92cf806 e4bdb10
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Wed May 1 18:00:04 2024 -0500
+
+    Merge pull request #4 from Macroesthethic/JaviCode
+    
+    ADD: Implement register user finish
+
+[33mcommit e4bdb10a0415843cf81d65fa7c35b2592a746c40[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Wed May 1 17:59:14 2024 -0500
+
+    ADD: Implement register user finish
+
+[33mcommit 92cf806894760cea9d3724c1ce0ae069b8f698ef[m
+Merge: 1ddea8a 1c12302
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Wed May 1 13:00:34 2024 -0500
+
+    Merge pull request #3 from Macroesthethic/JaviCode
+    
+    Javi code
+
+[33mcommit 1c123024a1d3237a175e1cece3bc72ae2bcdbbc7[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Wed May 1 12:59:46 2024 -0500
+
+    ADD: Implement get file in user and upload file in the server
+
+[33mcommit f8837a30163cbabc3a35d6ea9f5afc4b0103e289[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Wed May 1 12:59:04 2024 -0500
+
+    ADD: Implement get file in user and upload file in the server
+
+[33mcommit 2a3172331f9f5a1b24a83489d87fd24f33279d77[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Tue Apr 30 11:48:07 2024 -0500
+
+    FIX : send file is ready finish
+
+[33mcommit cf2407558df5b0b3bf521940b1f494d104db0fc3[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Mon Apr 22 21:01:57 2024 -0500
+
+    ADD:Continue configuration file upload server
+
+[33mcommit c331861d2d67dbe3bdbdf8637de8451bcceee65b[m
+Merge: 595de59 6ce3fec
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sun Apr 21 19:23:07 2024 -0500
+
+    Merge branch 'JaviCode' of https://github.com/Macroesthethic/microaesthetics-back into JaviCode
+
+[33mcommit 595de591bf1da940b683187a5ba7564d23b67f56[m
+Merge: 1ddea8a d3f47e9
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu Apr 18 17:55:54 2024 -0500
+
+    Merge branch 'JaviCode' of https://github.com/Macroesthethic/microaesthetics-back into JaviCode
+
+[33mcommit 6ce3fec8b1a53856b9b06ff8232feaea5691eab3[m
+Merge: d3f47e9 1ddea8a
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Thu Apr 18 13:24:40 2024 -0500
+
+    Merge branch 'main' into JaviCode
+
+[33mcommit d3f47e90b37fc586ae205e70eb4502a0f0f09267[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Sat Apr 13 18:24:49 2024 -0500
+
+    ADD: added fields register
+
+[33mcommit 1ddea8a41276c021b855365532b63c7da29f4bb1[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sun Mar 24 16:59:15 2024 -0500
+
+    ADD: Config data user register
+
+[33mcommit d15afe457e02dc934330891bff3b8142a4d45524[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu Mar 21 20:17:11 2024 -0500
+
+    ADD: Response user register
+
+[33mcommit bbfde687085a79aad342582ba35a0484dafb5678[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu Mar 21 19:04:48 2024 -0500
+
+    FIX: Start to prod command
+
+[33mcommit e25ad5f91722f2a57a733331d04fb9a35cbca11c[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu Mar 21 18:06:00 2024 -0500
+
+    DELETE: File upload folder
+
+[33mcommit 2a60a1bf030a2926f41722bd482aa9f59d73a5a4[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu Mar 21 18:04:43 2024 -0500
+
+    ADD: New structure for register user
+
+[33mcommit 14683706bd8bc9c95b04ef92f919a0fe70be43fe[m
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Wed Mar 20 19:16:15 2024 -0500
+
+    Update package.json
+
+[33mcommit 3d37b41196f0f96f9331b14345014f6de5544164[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Wed Mar 20 19:03:25 2024 -0500
+
+    FIX:Data of user details change in to db
+
+[33mcommit d7600968869e24c45d0ce222c8739f8f01a49d82[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Wed Mar 20 13:45:39 2024 -0500
+
+    ADD: Implement the role and name in token login
+
+[33mcommit 32e14f949e5d81d999c277dd5f7d32494b319c87[m
+Merge: 8c47e56 a44052d
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Wed Mar 20 07:21:15 2024 -0500
+
+    Merge branch 'JaviCode'
+
+[33mcommit a44052d5a59a3ab819db7472fc8de163820b13f8[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Tue Mar 19 21:42:14 2024 -0500
+
+    ADD:Implement Finish the register for user
+
+[33mcommit c8aea8872c71985b0473ce0d80eed03bba718525[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Sun Mar 17 17:41:41 2024 -0500
+
+    ADD: User detail just some fields
+
+[33mcommit a8253e4dc240620b2267494cdfb36f4c5d199b09[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Tue Mar 12 21:17:50 2024 -0500
+
+    ADD: Implement upload of files
+
+[33mcommit 8c47e564b8cf83bcd1c6e67777dd957216cd9160[m
+Merge: a0f2beb f809838
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Tue Mar 12 07:59:03 2024 -0500
+
+    Merge branch 'JaviCode'
+
+[33mcommit f809838bda0b355cad317bd48a2dd3cf2bc0f6dc[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Mon Mar 11 21:36:47 2024 -0500
+
+    ADD: Init User Details and upload files
+
+[33mcommit a0f2bebd534d65680f997f0cb937bdd606bc1dd1[m
+Merge: 1cb42f9 d3a87ae
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Mon Mar 11 14:37:20 2024 -0500
+
+    Merge branch 'JaviCode'
+
+[33mcommit d3a87ae883dea0e66b7b6f602f18b047239bc7e8[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sun Mar 10 20:48:53 2024 -0500
+
+    FIX:Some values configuration
+
+[33mcommit 1cb42f9ca74a23c21bcbcd5d24bfd77f0222555b[m
+Merge: dc49a21 cac48b9
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Sun Mar 10 14:19:02 2024 -0500
+
+    Merge pull request #2 from Macroesthethic/JaviCode
+    
+    Merge changes the brach personal with Base Main
+
+[33mcommit cac48b9ca318434a90536fc989f31170dc31bbe7[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sun Mar 10 14:13:35 2024 -0500
+
+    ADD: Response with JWT
+
+[33mcommit 0799ec5ae18f985a59e92bcdbb9bf6fb64911e43[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sun Mar 10 13:35:55 2024 -0500
+
+    ADD: Refactoring styles and images repeat
+
+[33mcommit 5341575a7e3473df09b2f0da8914102f944352fd[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sat Mar 9 21:54:42 2024 -0500
+
+    ADD: Refactoring styles and images repeat
+
+[33mcommit 5d0247f7947f8819197ad862bebe9df86012f469[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Sat Mar 9 12:46:25 2024 -0500
+
+    ADD:Configuration the init for register User
+
+[33mcommit 8e97fd06dc16429d83811b91635d2cb8985ea035[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Wed Mar 6 20:55:12 2024 -0500
+
+    ADD: Init register user
+
+[33mcommit 84cb72d96a461d960af99bafedb9b65ef7c07aee[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Thu Feb 29 13:44:14 2024 -0500
+
+    CREATE: Create entities for add User
+
+[33mcommit dc49a21fa27c342cbcc9ca1174c431270b96760e[m
+Merge: 57e9ae3 2ab262c
+Author: Javier Holguin <89085980+javierhol@users.noreply.github.com>
+Date:   Wed Feb 28 10:09:06 2024 -0500
+
+    Merge pull request #1 from Macroesthethic/JaviCode
+    
+    Update change to main branch
+
+[33mcommit 2ab262cfe78e2632c9c77603a25a8406e965717d[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Wed Feb 28 10:06:34 2024 -0500
+
+    ADD: Completion of database configuration
+
+[33mcommit af7b59e6783c623b02dfd5d0734c2be60c6dba40[m
+Author: javierhol <javierholguin596@gmail.com>
+Date:   Tue Feb 27 21:31:47 2024 -0500
+
+    ADD: Continue with configuration db
+
+[33mcommit 83db67b3b1189dcd9cadc2a9cc5e4e25dd71ba77[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Tue Feb 27 11:53:34 2024 -0500
+
+    ADD: Finishing configuring communication with the database
+
+[33mcommit 3e45d31fee47f03756bcc0f596278305b1b07911[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Mon Feb 26 12:49:03 2024 -0500
+
+    NEW:Creating the database image connection
+
+[33mcommit 32a82569bd303e57c1dc1c8f8153d4f70faaf8ad[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sun Feb 25 21:18:22 2024 -0500
+
+    ADD: Documentation Is Added For The Back
+
+[33mcommit e32ec28ad72076fa2707e924b16692add118fdc8[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sat Feb 24 18:31:12 2024 -0500
+
+    CREATE: Creating your authentication resource
+
+[33mcommit 57e9ae36daac7dca77a091bf9385329813de8f60[m[33m ([m[1;31morigin/release[m[33m)[m
+Author: FractionOfCode <javierholguin596.com>
+Date:   Sat Feb 24 16:26:10 2024 -0500
+
+    NEW: Initialize project back
