@@ -22,4 +22,8 @@ jobs:
         script: |
           cd /home/ubuntu/microaesthetics-back
           git pull origin main
-          pm2 restart server-macro
+          nvm use 20.10.0
+          pm2 restart server-macro &
+          sudo systemctl restart nginx
+          
+        
