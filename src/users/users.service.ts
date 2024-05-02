@@ -51,6 +51,8 @@ export class UsersService {
 
       });
 
+      console.log(user);
+
       await this.usersRepository.save(user);
       return HttpStatus.CREATED;
 
@@ -72,6 +74,7 @@ export class UsersService {
     await this.usersRepository.save({
       ...user,
       ...updateUserDto,
+      is_active: true,
     });
 
     return {
