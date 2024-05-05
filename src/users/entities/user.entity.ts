@@ -67,6 +67,9 @@ export class User {
   @Column("text")
   country: string;
 
+  @Column("text")
+  region: string;
+
   @Column("text", { nullable: true })
   attachFile?: string;
 
