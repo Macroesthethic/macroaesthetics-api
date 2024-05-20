@@ -84,6 +84,10 @@ export class CreateUserDto {
   @IsNotEmpty()
   country: string;
 
+  @IsString()
+  @IsNotEmpty()
+  region: string;
+
   @IsOptional()
   professionalID?: number;
 

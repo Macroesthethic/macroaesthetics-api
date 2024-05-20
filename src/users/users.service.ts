@@ -74,12 +74,13 @@ export class UsersService {
     await this.usersRepository.save({
       ...user,
       ...updateUserDto,
-      is_active: true,
+      //is_active: true,
     });
 
     return {
       status: HttpStatus.OK,
       message: "User updated successfully",
+      
     };
 
   }
