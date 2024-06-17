@@ -51,7 +51,6 @@ export class UsersService {
 
       });
 
-      console.log(user);
 
       await this.usersRepository.save(user);
       return HttpStatus.CREATED;
@@ -80,7 +79,7 @@ export class UsersService {
     return {
       status: HttpStatus.OK,
       message: "User updated successfully",
-      
+
     };
 
   }

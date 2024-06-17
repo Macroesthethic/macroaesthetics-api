@@ -54,7 +54,7 @@ export class UsersController {
       })
     }))
   @Post('register')
-  async create(@UploadedFiles() file: Express.Multer.File, @Body() createUserDto) {
+  async create(@UploadedFiles() file: Express.Multer.File, @Body() createUserDto: CreateUserDto) {
     const attachFileUrl = file[0]?.path ?? null;
     const user = await this.usersService.create(createUserDto, attachFileUrl);
     return user;
